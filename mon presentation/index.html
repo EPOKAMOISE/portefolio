@@ -1,548 +1,846 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>L'histoire de quelqu'un</title>
-    <link rel="stylesheet" href="ressources/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <!-- Font Awesome -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOKELO EPOKA Moïse — Portfolio</title>
+
+  <!-- Bootstrap 3 & Font Awesome -->
+  <link rel="stylesheet" href="ressources/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <style>
-    .btn-primary {
-      background-color: #6c43e0;
-      border-color: #6c43e0;
+    html {
+      scroll-behavior: smooth;
     }
-    .btn-primary:hover {
-      background-color: #5a36c0;
-      border-color: #5a36c0;
+    body {
+      padding-top: 52px;
+      background-color: #0b1120;
+      color: #e2e8f0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Évite que la navbar fixe cache le haut des sections lors d'un clic sur un lien */
+    section[id], div[id="Propos"], div[id="Compétences"], div[id="service"], div[id="reference"], div[id="contact"] {
+      scroll-margin-top: 75px;
+    }
+
+    /* Navbar */
+    .navbar-portfolio {
+      background-color: rgba(11, 17, 32, 0.95);
+      border-color: #1e293b;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+    .navbar-portfolio .navbar-brand {
+      color: #f8fafc !important;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+    .navbar-portfolio .navbar-nav > li > a {
+      color: #cbd5e1 !important;
+      font-weight: 500;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+    .navbar-portfolio .navbar-nav > li > a:hover,
+    .navbar-portfolio .navbar-nav > li > a:focus {
+      color: #ffffff !important;
+      background-color: rgba(124, 93, 250, 0.16);
+    }
+    .navbar-portfolio .navbar-toggle {
+      border-color: #334155;
+    }
+    .navbar-portfolio .navbar-toggle .icon-bar {
+      background-color: #e2e8f0;
+    }
+
+    /* Boutons & accents */
+    .btn-primary {
+      background-color: #7c5dfa;
+      border-color: #7c5dfa;
+      color: #ffffff;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #6846e8;
+      border-color: #6846e8;
+      color: #ffffff;
+    }
+    .btn-success {
+      background-color: #16a34a;
+      border-color: #16a34a;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .btn-success:hover,
+    .btn-success:focus {
+      background-color: #15803d;
+      border-color: #15803d;
     }
     .text-primary {
-      color: #6c43e0 !important;
+      color: #9f85ff !important;
     }
-    .social-icons a {
-      margin-right: 10px;
+    .text-muted {
+      color: #94a3b8 !important;
     }
 
-     /* footer */
-    .bg-black {
-      background-color: #0a6ae7 !important; /* fond noir */
+    /* Hero / Accueil */
+    .hero-section {
+      padding: 60px 0 35px;
+      background: radial-gradient(circle at top right, rgba(124, 93, 250, 0.14), transparent 55%),
+                  linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
     }
-    .footer-content {
-      color: #fff;
+    .hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-top: 15px;
+      margin-bottom: 15px;
     }
-    .social-icons span {
-      display: block;
-      margin-bottom: 10px;
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(124, 93, 250, 0.16);
+      border: 1px solid rgba(159, 133, 255, 0.35);
+      color: #c4b5fd;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .hero-photo {
+      border-radius: 12px;
+      border: 1px solid #1e293b;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      max-height: 420px;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+
+    /* Titres de section */
+    .section-title {
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 12px;
+    }
+    .section-subtitle {
+      color: #94a3b8;
       font-size: 15px;
-      color: #fff;
+      margin-bottom: 30px;
     }
-    .social-icons i {
+
+    /* Cartes & blocs sombres harmonieux */
+    .soft-card {
+      background-color: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    .service-band {
+      background-color: #0f172a;
+      border-top: 1px solid #1e293b;
+      border-bottom: 1px solid #1e293b;
+    }
+    .service-box {
+      background-color: #111827;
+      border: 1px solid #1e293b;
+      border-left: 4px solid #7c5dfa;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .service-box:hover {
+      transform: translateY(-2px);
+      border-color: #334155;
+      border-left-color: #9f85ff;
+    }
+
+    /* Cartes références équilibrées sur bureau */
+    @media (min-width: 992px) {
+      .ref-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .ref-row > [class*="col-"] {
+        display: flex;
+        flex-direction: column;
+      }
+      .ref-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+    .ref-card {
+      background-color: #172033;
+      border: 1px solid #263248;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .ref-card:hover {
+      transform: translateY(-3px);
+      border-color: #3b4d6b;
+    }
+    .ref-avatar {
+      background-color: #e2e8f0;
+      padding: 4px;
+    }
+
+    /* Barres de compétences */
+    .skill-item {
+      margin-bottom: 18px;
+    }
+    .skill-header {
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #f1f5f9;
+    }
+    .progress {
+      height: 10px;
+      border-radius: 10px;
+      background-color: #1e293b;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+      margin-bottom: 0;
+    }
+    .progress-bar {
+      border-radius: 10px;
+    }
+
+    /* Champs formulaire sombres */
+    .form-control {
+      background-color: #172033;
+      border: 1px solid #2c3a52;
+      color: #f8fafc;
+      border-radius: 6px;
+    }
+    .form-control:focus {
+      background-color: #1b263c;
+      border-color: #7c5dfa;
+      color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(124, 93, 250, 0.22);
+    }
+    .form-control::placeholder {
+      color: #94a3b8;
+    }
+
+    /* Footer responsive */
+    .custom-footer {
+      background-color: #070b14;
+      color: #e2e8f0;
+      padding: 45px 15px 25px;
+      margin-top: 75px;
+      border-top: 3px solid #7c5dfa;
+    }
+    .footer-col {
+      margin-bottom: 20px;
+    }
+    .footer-links p {
+      margin-bottom: 10px;
+      font-size: 14.5px;
+      word-break: break-word;
+    }
+    .footer-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: #a78bfa;
+    }
+    .footer-links i {
+      width: 22px;
+      text-align: center;
       margin-right: 6px;
     }
-    .quote {
+    .footer-quote {
+      margin-top: 18px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(148, 163, 184, 0.16);
       font-style: italic;
-      font-size: 16px;
-      color: #fff;
-      margin-top: 30px;
+      font-size: 15px;
+      color: #cbd5e1;
       text-align: center;
+      line-height: 1.65;
+    }
+    @media (max-width: 991px) {
+      .footer-col {
+        text-align: center !important;
+      }
+      .hero-section {
+        text-align: center;
+        padding-top: 35px;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+    }
+    @media (min-width: 992px) {
+      .footer-left { text-align: left; }
+      .footer-center { text-align: center; }
+      .footer-right { text-align: right; }
+    }
+
+    /* Boutons flottants en bas à droite */
+    .floating-actions {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cv-float {
+      background-color: #7c5dfa;
+      border: 1px solid rgba(196, 181, 253, 0.45);
+      color: #ffffff;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .cv-float:hover {
+      transform: scale(1.06);
+      background-color: #6846e8;
+      color: #ffffff;
+    }
+    .whatsapp-float {
+      background-color: #0b241d;
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      color: #ffffff;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.06);
+      color: #ffffff;
+      text-decoration: none;
     }
   </style>
-
-
 </head>
-<body >
+<body>
 
-    <nav class="navbar navbar-fixed-top" style="background: darkblue;">
-  <div class="container">
-
-    <!-- Liens du menu -->
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#Propos">À Propos de moi</a></li>
-        <li><a href="#Compétences">Compétences</a></li>
-        <li><a href="#service">Services</a></li>
-        <li><a href="#Projets">Projets</a></li>
-        <li><a href="#reference">Témoignages</a></li>
-        <li><a href="#contact">Contacts</a></li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
-
-
-
-
-      <div class="container" style="margin-top: 90px;">
-        <div class="col-sm-6">
-            <h3 class="text-blanck mb-3" style="margin-top: 120px"> Bienvenue dans ma case</h3>
-        <P>
-             Je suis <strong> BOKELO EPOKA Moïse</strong>, licencié en informatique de gestion, 
-passionné par la transformation numérique et le développement web. Avec compétences solides en 
-programmation et gestion de bases de données.
-        </P>
-                <div class="d-flex align-items-center pt-5">
-                        <a target="_blank" href="img/cv_moise.docx" class="btn btn-primary py-3 ">Télecharger CV</a>
-                   <a class="btn btn-success" href="https://wa.me/243813537497" target="_blank">Me contacter via WhatsApp</a>
-
-                 </div>
-
+  <!-- Navigation -->
+  <nav class="navbar navbar-fixed-top navbar-portfolio">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+          <span class="sr-only">Afficher le menu</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Moïse Bokelo</a>
       </div>
 
-        <div class="col-sm-5 text-right">
-            <img src="img/L.jpg" class="img-responsive">
+      <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#Propos">À Propos de moi</a></li>
+          <li><a href="#Compétences">Compétences</a></li>
+          <li><a href="#service">Services</a></li>
+          <li><a href="#Projets">Projets</a></li>
+          <li><a href="#reference">Témoignages</a></li>
+          <li><a href="#contact">Contacts</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Accueil / Hero -->
+  <div class="hero-section">
+    <div class="container">
+      <div class="row" style="display: flex; flex-wrap: wrap; align-items: center;">
+        <div class="col-md-6" style="margin-bottom: 25px;">
+          <h1 class="hero-title">Bienvenue dans ma case</h1>
+          <p style="font-size: 15.5px; line-height: 1.7; color: #cbd5e1;">
+            Je suis <strong>BOKELO EPOKA Moïse</strong>, licencié en informatique de gestion,
+            passionné par la transformation numérique et le développement web. Avec des compétences solides en
+            programmation et gestion de bases de données.
+          </p>
+          <div class="hero-actions" style="margin-top: 25px; display: flex; flex-wrap: wrap; gap: 10px;">
+            <a target="_blank" href="img/cv_moise.docx" class="btn btn-primary" style="padding: 10px 18px;">
+              <i class="" style="margin-right: 6px;"></i>Télécharger CV
+            </a>
+            <a class="btn btn-success" href="https://wa.me/243813537497" target="_blank" style="padding: 10px 18px;">
+              <i class="" style="margin-right: 6px;"></i>Me contacter via WhatsApp
+            </a>
+          </div>
         </div>
+
+        <div class="col-md-5 col-md-offset-1 text-center">
+          <img src="img/L.jpg" class="img-responsive hero-photo" alt="Photo de Moïse Bokelo">
+        </div>
+      </div>
     </div>
+  </div>
 
+  <!-- À propos & Parcours -->
+  <div class="container" style="margin-top: 85px;" id="Propos">
+    <div class="row">
 
+      <!-- Présentation -->
+      <div class="col-md-6" style="margin-bottom: 30px;">
+        <h2 class="section-title">À Propos de moi</h2>
+        <p class="section-subtitle" style="margin-bottom: 20px;">Profil académique, vision technique et approche professionnelle.</p>
+        <p style="line-height: 1.7; color: #cbd5e1;">
+          Je suis <strong>BOKELO EPOKA Moïse</strong>, diplômé en
+          informatique de gestion et passionné par l’innovation technologique.
+          Mon parcours m’a permis de développer une expertise solide dans la
+          programmation web, la gestion des bases de données et l’analyse
+          des systèmes informatiques.
+        </p>
+        <p style="line-height: 1.7; color: #cbd5e1;">
+          J’accompagne les entreprises et projets numériques dans la conception
+          de solutions performantes, fiables et évolutives. Je maîtrise la
+          création d’applications web modernes, l’optimisation des systèmes
+          d’information et la modélisation informatique.
+        </p>
+        <p style="line-height: 1.7; color: #cbd5e1;">
+          Mon objectif est de mettre la technologie au service de la productivité
+          et de l’innovation, en transformant les idées en solutions concrètes
+          et durables.
+        </p>
+        <p style="line-height: 1.7; color: #cbd5e1; margin-bottom: 0;">
+          Ouvert aux collaborations, je recherche des opportunités où je pourrai
+          apporter mes compétences techniques et mon esprit créatif pour générer
+          de la valeur ajoutée.
+        </p>
+      </div>
 
-    <div class="container" style="margin-top: 140px;" id="Propos">
-  <div class="row">
-    
-    <!-- Colonne gauche : texte de présentation -->
-    <div class="col-md-6">
-      <p>
-        Je suis <strong>BOKELO EPOKA Moïse</strong>, diplômé en
-        informatique de gestion et passionné par l’innovation technologique.
-        Mon parcours m’a permis de développer une expertise solide dans la
-        programmation web, la gestion des bases de données et l’analyse
-        des systèmes informatiques.
-      </p>
-      <p>
-        J’accompagne les entreprises et projets numériques dans la conception
-        de solutions performantes, fiables et évolutives. Je maîtrise la
-        création d’applications web modernes, l’optimisation des systèmes
-        d’information et la modélisation informatique.
-      </p>
-      <p>
-        Mon objectif est de mettre la technologie au service de la productivité
-        et de l’innovation, en transformant les idées en solutions concrètes
-        et durables.
-      </p>
-      <p>
-        Ouvert aux collaborations, je recherche des opportunités où je pourrai
-        apporter mes compétences techniques et mon esprit créatif pour générer
-        de la valeur ajoutée.
-      </p>
-    </div>
-    
-    <!-- Colonne droite : card Formation -->
-    <div class="col-md-6">
-      <div class="card shadow-lg border-0">
-        <div class="card-body">
+      <!-- Formation -->
+      <div class="col-md-6">
+        <div class="soft-card" style="padding: 25px;">
           <div class="row">
-            
-            <!-- Partie gauche : Formation -->
-            <div class="col-md-6 border-end">
-              <h4 class="text-primary mb-4">Formation</h4>
-              
-              <div class="mb-3">
-                <p class="text-muted mb-1">2018</p>
-                <h5>École Primaire</h5>
-                <h6 class="mb-0">Nong’iboko/Inongo</h6>
+
+            <div class="col-sm-6" style="margin-bottom: 20px;">
+              <h4 class="text-primary" style="font-weight: 700; margin-bottom: 18px;">Formation</h4>
+
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1e293b;">
+                <span class="label label-default" style="background-color: #1e293b; color: #cbd5e1;">2018</span>
+                <h5 style="font-weight: 700; margin: 6px 0 2px; color: #f8fafc;">École Primaire</h5>
+                <p class="text-muted" style="margin: 0; font-size: 13px;">Nong’iboko / Inongo</p>
               </div>
 
-             <div class="mb-3">
-                <p class="text-muted mb-1">2023</p>
-                <h5>Humanités Commerciales et de Gestion</h5>
-                <h6 class="mb-0">Lycée Sainte Famille/Inongo</h6>
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1e293b;">
+                <span class="label label-default" style="background-color: #1e293b; color: #cbd5e1;">2023</span>
+                <h5 style="font-weight: 700; margin: 6px 0 2px; color: #f8fafc;">Humanités Commerciales et de Gestion</h5>
+                <p class="text-muted" style="margin: 0; font-size: 13px;">Lycée Sainte Famille / Inongo</p>
               </div>
 
-              <div class="mb-3">
-                <p class="text-muted mb-1">2026</p>
-                <h5>Licence en Informatique de Gestion</h5>
-                <h6 class="mb-0">Université Haute École de Commerce - Kinshasa</h6>
+              <div>
+                <span class="label label-primary" style="background-color: #7c5dfa;">2026</span>
+                <h5 style="font-weight: 700; margin: 6px 0 2px; color: #f8fafc;">Licence en Informatique de Gestion</h5>
+                <p class="text-muted" style="margin: 0; font-size: 13px;">Université Haute École de Commerce - Kinshasa</p>
               </div>
-              
             </div>
-            
-            <!-- Partie droite : Formation complémentaire -->
-            <div class="col-md-6">
-              <h4 class="text-primary mb-4">Formation complémentaire</h4>
-              
-               <div class="mb-3">
-                <p class="text-muted mb-1">2023</p>
-                <h5>Bureautique</h5>
-                <h6 class="mb-0">Word, Excel, PowerPoint.</h6>
+
+            <div class="col-sm-6">
+              <h4 class="text-primary" style="font-weight: 700; margin-bottom: 18px;">Formation complémentaire</h4>
+
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1e293b;">
+                <span class="label label-default" style="background-color: #1e293b; color: #cbd5e1;">2023</span>
+                <h5 style="font-weight: 700; margin: 6px 0 2px; color: #f8fafc;">Bureautique</h5>
+                <p class="text-muted" style="margin: 0; font-size: 13px;">Word, Excel, PowerPoint.</p>
               </div>
 
-              <div class="mb-3">
-                <p class="text-muted mb-1">2026</p>
-                <h5>Programmation Web</h5>
-                <h6 class="mb-0">HTML, CSS, Bootstrap, PHP.</h6>
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1e293b;">
+                <span class="label label-default" style="background-color: #1e293b; color: #cbd5e1;">2026</span>
+                <h5 style="font-weight: 700; margin: 6px 0 2px; color: #f8fafc;">Programmation Web</h5>
+                <p class="text-muted" style="margin: 0; font-size: 13px;">HTML, CSS, Bootstrap, PHP.</p>
               </div>
-              
-              <div class="mb-3">
-                <p class="text-muted mb-1">2026</p>
-                <h5>Machine Learning</h5>
-                <h6 class="mb-0">Introduction à TensorFlow.</h6>
+
+              <div>
+                <span class="label label-default" style="background-color: #1e293b; color: #cbd5e1;">2026</span>
+                <h5 style="font-weight: 700; margin: 6px 0 2px; color: #f8fafc;">Machine Learning</h5>
+                <p class="text-muted" style="margin: 0; font-size: 13px;">Introduction à TensorFlow.</p>
               </div>
-              
             </div>
-            
+
           </div>
         </div>
       </div>
+
     </div>
-    
   </div>
-</div>
 
+  <!-- Compétences -->
+  <div class="container" style="margin-top: 90px;" id="Compétences">
+    <div class="row" style="display: flex; flex-wrap: wrap; align-items: center;">
 
-<div class="container wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 140px;" id="Compétences">
-  <div class="row">
-    
-    <!-- Colonne gauche : Compétences & Domaines d’expertise -->
-    <div class="col-md-6">
-      <h1 class="display-5 mb-5">Compétences & Domaines d’expertise</h1>
-      <p class="mb-4">
-        Licencié en informatique avec une expertise en développement web,
-        gestion de bases de données, analyse des systèmes informatiques,
-        programmation et bureautique.
-      </p>
-    </div>
-    
-    <!-- Colonne droite : Compétences principales -->
-<div class="col-md-6">
-  <h3 class="mb-4">Compétences principales</h3>
-  
-  <div class="row">
-    
-    <!-- Groupe gauche -->
-    <div class="col-md-6">
-      <div class="skill mb-4">
-        <div class="d-flex justify-content-between">
-          <h6 class="font-weight-bold">Bases de données (MySQL et postgresql)</h6>
-        </div>
-        <div class="progress">
-          <!-- BLEU -->
-          <div class="progress-bar bg-primary" style="width: 75%;"></div>
-        </div>
-      </div>
-      
-      <div class="skill mb-4">
-        <div class="d-flex justify-content-between">
-          <h6 class="font-weight-bold">Analyse & Modélisation des systèmes</h6>
-        </div>
-        <div class="progress">
-          <!-- JAUNE -->
-          <div class="progress-bar bg-warning" style="width: 85%;"></div>
-        </div>
-      </div>
-      
-      <div class="skill mb-4">
-        <div class="d-flex justify-content-between">
-          <h6 class="font-weight-bold">comptabilité</h6>
-        </div>
-        <div class="progress">
-          <!-- ORANGE -->
-          <div class="progress-bar" style="width: 80%; background-color: #fd7e14;"></div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Groupe droite -->
-    <div class="col-md-6">
-      <div class="skill mb-4">
-        <div class="d-flex justify-content-between">
-          <h6 class="font-weight-bold">Programmation ( PHP, JavaScript)</h6>
-        </div>
-        <div class="progress">
-          <!-- VERT -->
-          <div class="progress-bar bg-success" style="width: 75%;"></div>
-        </div>
-      </div>
-
-      <div class="skill mb-4">
-        <div class="d-flex justify-content-between">
-          <h6 class="font-weight-bold">Développement Web (backend et frontend)</h6>
-        </div>
-        <div class="progress">
-          <!-- BLEU -->
-          <div class="progress-bar bg-primary" style="width: 75%;"></div>
-        </div>
-      </div>
-      
-      <div class="skill mb-4">
-        <div class="d-flex justify-content-between">
-          <h6 class="font-weight-bold">Bureautique (Word, Excel, PowerPoint)</h6>
-        </div>
-        <div class="progress">
-          <!-- JAUNE -->
-          <div class="progress-bar bg-warning" style="width: 90%;"></div>
-        </div>
-      </div>
-    </div>
-    
-  </div>
-</div>
-
-<div class="container-fluid bg-light my-5 py-6" id="service" style="margin-top: 140px;">
-  <div class="container">
-    <div class="row align-items-center g-5 mb-5 wow fadeInUp" data-wow-delay="0.1s">
-      
-      <!-- Texte à gauche -->
-      <div class="col-lg-6">
-        <h1 class="display-5 mb-0">Mes Services</h1>
-        <p class="text-muted mt-3">
-          Ces services traduisent mes compétences techniques et professionnelles, 
-          développées à travers mes formations et expériences en informatique de gestion.
+      <div class="col-md-5" style="margin-bottom: 25px;">
+        <h2 class="section-title">Compétences &amp; Domaines d’expertise</h2>
+        <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 0;">
+          Licencié en informatique avec une expertise en développement web,
+          gestion de bases de données, analyse des systèmes informatiques,
+          programmation et bureautique.
         </p>
+      </div>
 
-        <div class="service-item bg-white rounded p-4 p-lg-5 mb-4">
-          <h4 class="mb-3"><i class="fa fa-code text-primary me-2"></i>Développement Web</h4>
-          <p>
-            Mise en pratique de mes compétences en <strong>programmation (PHP, JavaScript)</strong> 
-            et <strong>gestion de bases de données (MySQL)</strong> pour concevoir des sites web dynamiques et sécurisés.
-          </p>
-        </div>
+      <div class="col-md-7">
+        <div class="soft-card" style="padding: 25px;">
+          <h4 style="font-weight: 700; margin-top: 0; margin-bottom: 20px; color: #f8fafc;">Compétences principales</h4>
 
-        <div class="service-item bg-white rounded p-4 p-lg-5 mb-4">
-          <h4 class="mb-3"><i class="fa fa-chart-line text-warning me-2"></i>Collecte & Analyse des Données</h4>
-          <p>
-            Application de mes compétences en <strong>analyse et modélisation des systèmes</strong> 
-            et en <strong>data science</strong> pour collecter, traiter et visualiser les données avec Power BI.
-          </p>
-        </div>
+          <div class="row">
+            <!-- Groupe gauche -->
+            <div class="col-sm-6">
+              <div class="skill-item">
+                <div class="skill-header clearfix">
+                  <strong class="pull-left">Bases de données (MySQL / PostgreSQL)</strong>
+                  <span class="pull-right text-muted">75%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; background-color: #3b82f6;"></div>
+                </div>
+              </div>
 
-        <div class="service-item bg-white rounded p-4 p-lg-5">
-          <h4 class="mb-3"><i class="fa fa-calculator text-success me-2"></i>Comptabilité</h4>
-          <p>
-            Exploitation de mes compétences en <strong>gestion informatique</strong> pour mettre en place 
-            des solutions comptables et produire des états financiers fiables.
-          </p>
+              <div class="skill-item">
+                <div class="skill-header clearfix">
+                  <strong class="pull-left">Analyse &amp; Modélisation des systèmes</strong>
+                  <span class="pull-right text-muted">85%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" style="margin-bottom: 0;">
+                <div class="skill-header clearfix">
+                  <strong class="pull-left">Comptabilité</strong>
+                  <span class="pull-right text-muted">80%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%; background-color: #fd7e14;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Groupe droite -->
+            <div class="col-sm-6" style="margin-top: 15px;">
+              <div class="skill-item">
+                <div class="skill-header clearfix">
+                  <strong class="pull-left">Programmation (PHP, JavaScript)</strong>
+                  <span class="pull-right text-muted">75%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header clearfix">
+                  <strong class="pull-left">Développement Web (Backend &amp; Frontend)</strong>
+                  <span class="pull-right text-muted">75%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; background-color: #3b82f6;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" style="margin-bottom: 0;">
+                <div class="skill-header clearfix">
+                  <strong class="pull-left">Bureautique (Word, Excel, PowerPoint)</strong>
+                  <span class="pull-right text-muted">90%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- Image à droite -->
-      <div class="col-sm-5 text-right " style="margin-top: 40px;" >
-            <img src="img/s.PNG" class="img-responsive">
-        </div>
-
     </div>
   </div>
-</div>
 
+  <!-- Services -->
+  <div class="container-fluid service-band" id="service" style="margin-top: 90px; padding: 60px 0;">
+    <div class="container">
+      <div class="row" style="display: flex; flex-wrap: wrap; align-items: center;">
 
+        <div class="col-md-7">
+          <h2 class="section-title">Mes Services</h2>
+          <p class="section-subtitle">
+            Ces services traduisent mes compétences techniques et professionnelles,
+            développées à travers mes formations et expériences en informatique de gestion.
+          </p>
 
+          <div class="service-box">
+            <h4 style="font-weight: 700; margin-top: 0; color: #f8fafc;"><i class="fa fa-code text-primary" style="margin-right: 8px;"></i>Développement Web</h4>
+            <p style="margin-bottom: 0; color: #cbd5e1;">
+              Mise en pratique de mes compétences en <strong>programmation (PHP, JavaScript)</strong>
+              et <strong>gestion de bases de données (MySQL)</strong> pour concevoir des sites web dynamiques et sécurisés.
+            </p>
+          </div>
 
+          <div class="service-box" style="border-left-color: #f59e0b;">
+            <h4 style="font-weight: 700; margin-top: 0; color: #f8fafc;"><i class="fa fa-chart-line text-warning" style="margin-right: 8px;"></i>Collecte &amp; Analyse des Données</h4>
+            <p style="margin-bottom: 0; color: #cbd5e1;">
+              Application de mes compétences en <strong>analyse et modélisation des systèmes</strong>
+              et en <strong>data science</strong> pour collecter, traiter et visualiser les données avec Power BI.
+            </p>
+          </div>
 
-<div class="container" id="reference" style="margin-top: 140px;">
-<div class="card shadow-lg border-0 my-5">
-  <div class="card-body">
-    <h2 class="text-center text-primary mb-5">Références</h2>
-    <div class="row">
-      
-      <!-- Colonne gauche -->
-      <div class="col-md-4">
+          <div class="service-box" style="border-left-color: #10b981; margin-bottom: 0;">
+            <h4 style="font-weight: 700; margin-top: 0; color: #f8fafc;"><i class="fa fa-calculator text-success" style="margin-right: 8px;"></i>Comptabilité</h4>
+            <p style="margin-bottom: 0; color: #cbd5e1;">
+              Exploitation de mes compétences en <strong>gestion informatique</strong> pour mettre en place
+              des solutions comptables et produire des états financiers fiables.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-5 text-center" style="margin-top: 30px;">
+          <img src="img/s.PNG" class="img-responsive" style="border-radius: 10px; border: 1px solid #1e293b; margin: 0 auto;" alt="Illustration services">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Références -->
+  <div class="container" id="reference" style="margin-top: 90px;">
+    <div class="soft-card" style="padding: 35px 25px;">
+      <h2 class="text-center text-primary" style="font-weight: 700; margin-top: 0; margin-bottom: 10px;">Références</h2>
+      <p class="text-center section-subtitle">Personnes ressources pouvant attester de mon parcours et de mon sérieux.</p>
+
+      <div class="row ref-row">
         <!-- Dr Boluma -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body text-center">
-            <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png" 
-                 class="rounded-circle mb-3" alt="Dr Boluma">
-            <h5 class="text-primary">Dr Boluma</h5>
-            <p class="text-muted fst-italic">Mon enseignant, peut témoigner de la qualité de mon apprentissage et de mon assiduité.</p>
-            <span class="fw-bold">+243998540893</span>
+        <div class="col-md-4 col-sm-6">
+          <div class="ref-card text-center">
+            <div>
+              <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png"
+                   class="img-circle ref-avatar" style="width: 68px; height: 68px; margin-bottom: 12px;" alt="Dr Boluma">
+              <h4 class="text-primary" style="font-weight: 700; margin-top: 0;">Dr Boluma</h4>
+              <p class="text-muted" style="font-style: italic; font-size: 13.5px;">Mon enseignant, peut témoigner de la qualité de mon apprentissage et de mon assiduité.</p>
+            </div>
+            <strong style="color: #f1f5f9;"><i class="fa fa-phone" style="margin-right: 5px; color: #94a3b8;"></i>+243998540893</strong>
+          </div>
+        </div>
+
+        <!-- Marcel Demunga -->
+        <div class="col-md-4 col-sm-6">
+          <div class="ref-card text-center">
+            <div>
+              <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png"
+                   class="img-circle ref-avatar" style="width: 68px; height: 68px; margin-bottom: 12px;" alt="Marcel Demunga">
+              <h4 class="text-primary" style="font-weight: 700; margin-top: 0;">Ir. Marcel Demunga</h4>
+              <p class="text-muted" style="font-style: italic; font-size: 13.5px;">Collaborateur d’étude et de travail, peut confirmer mon implication et mon sens de la coopération.</p>
+            </div>
+            <strong style="color: #f1f5f9;"><i class="fa fa-phone" style="margin-right: 5px; color: #94a3b8;"></i>0986327681</strong>
+          </div>
+        </div>
+
+        <!-- Dieu Benie Kama -->
+        <div class="col-md-4 col-sm-6">
+          <div class="ref-card text-center">
+            <div>
+              <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png"
+                   class="img-circle ref-avatar" style="width: 68px; height: 68px; margin-bottom: 12px;" alt="Dieu Benie Kama">
+              <h4 class="text-primary" style="font-weight: 700; margin-top: 0;">Ir. Dieu Benie Kama</h4>
+              <p class="text-muted" style="font-style: italic; font-size: 13.5px;">Collègue de travail, peut témoigner de mon professionnalisme et de mes compétences.</p>
+            </div>
+            <strong style="color: #f1f5f9;"><i class="fa fa-phone" style="margin-right: 5px; color: #94a3b8;"></i>+243823271277</strong>
           </div>
         </div>
 
         <!-- Alpha Nduite -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body text-center">
-            <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png" 
-                 class="rounded-circle mb-3" alt="Alpha Nduite">
-            <h5 class="text-primary">Dev. Alpha Nduite</h5>
-            <p class="text-muted fst-italic">Collègue d’étude et de travail, peut fournir des informations fiables sur mon parcours.</p>
-            <span class="fw-bold">+243836843573</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Colonne milieu -->
-      <div class="col-md-4">
-        <!-- Marcel Demunga -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body text-center">
-            <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png" 
-                 class="rounded-circle mb-3" alt="Marcel Demunga">
-            <h5 class="text-primary">Ir. Marcel Demunga</h5>
-            <p class="text-muted fst-italic">Collaborateur d’étude et de travail, peut confirmer mon implication et mon sens de la coopération.</p>
-            <span class="fw-bold">0986327681</span>
+        <div class="col-md-4 col-sm-6">
+          <div class="ref-card text-center">
+            <div>
+              <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png"
+                   class="img-circle ref-avatar" style="width: 68px; height: 68px; margin-bottom: 12px;" alt="Alpha Nduite">
+              <h4 class="text-primary" style="font-weight: 700; margin-top: 0;">Dev. Alpha Nduite</h4>
+              <p class="text-muted" style="font-style: italic; font-size: 13.5px;">Collègue d’étude et de travail, peut fournir des informations fiables sur mon parcours.</p>
+            </div>
+            <strong style="color: #f1f5f9;"><i class="fa fa-phone" style="margin-right: 5px; color: #94a3b8;"></i>+243836843573</strong>
           </div>
         </div>
 
-        <!-- Divin Badidi -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body text-center">
-            <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png" 
-                 class="rounded-circle mb-3" alt="Divin Badidi">
-            <h5 class="text-primary">Dev. Divin Badidi</h5>
-            <p class="text-muted fst-italic">Mon encadreur, peut attester de ma rigueur et de mon engagement dans mes projets.</p>
-            <a href="https://badidi-divin.github.io/portefolio/" target="_blank" class="fw-bold text-decoration-none">Voir le site web</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Colonne droite -->
-      <div class="col-md-4">
-        <!-- Dieu Benie Kama -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body text-center">
-            <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png" 
-                 class="rounded-circle mb-3" alt="Dieu Benie Kama">
-            <h5 class="text-primary">Ir. Dieu Benie Kama</h5>
-            <p class="text-muted fst-italic">Collègue de travail, peut témoigner de mon professionnalisme et de mes compétences.</p>
-            <span class="fw-bold">+243823271277</span>
+        <!-- LOPOLOKO -->
+        <div class="col-md-4 col-sm-6">
+          <div class="ref-card text-center">
+            <div>
+              <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png"
+                   class="img-circle ref-avatar" style="width: 68px; height: 68px; margin-bottom: 12px;" alt="LOPOLOKO">
+              <h4 class="text-primary" style="font-weight: 700; margin-top: 0;">Ir. Aime Césaire LOPOLOKO</h4>
+              <p class="text-muted" style="font-style: italic; font-size: 13.5px;">Partenaire de collaboration, peut fournir des renseignements pertinents à mon sujet.</p>
+            </div>
+            <strong style="color: #f1f5f9;"><i class="fa fa-phone" style="margin-right: 5px; color: #94a3b8;"></i>+243824562852</strong>
           </div>
         </div>
 
         <!-- Sacre Bibwangu -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body text-center">
-            <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png" 
-                 class="rounded-circle mb-3" alt="Sacre Bibwangu">
-            <h5 class="text-primary">Ir. Sacre Bibwangu</h5>
-            <p class="text-muted fst-italic">Partenaire de collaboration, peut fournir des renseignements pertinents à mon sujet.</p>
-            <span class="fw-bold">+243982309309</span>
+        <div class="col-md-4 col-sm-6">
+          <div class="ref-card text-center">
+            <div>
+              <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png"
+                   class="img-circle ref-avatar" style="width: 68px; height: 68px; margin-bottom: 12px;" alt="Sacre Bibwangu">
+              <h4 class="text-primary" style="font-weight: 700; margin-top: 0;">Ir. Sacre Bibwangu</h4>
+              <p class="text-muted" style="font-style: italic; font-size: 13.5px;">Partenaire de collaboration, peut fournir des renseignements pertinents à mon sujet.</p>
+            </div>
+            <strong style="color: #f1f5f9;"><i class="fa fa-phone" style="margin-right: 5px; color: #94a3b8;"></i>+243982309309</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="container" id="contact" style="margin-top: 90px;">
+    <div class="row" style="display: flex; flex-wrap: wrap; align-items: center;">
+
+      <div class="col-md-6" style="margin-bottom: 25px;">
+        <div class="soft-card" style="padding: 25px;">
+          <h3 style="font-weight: 700; margin-top: 0; margin-bottom: 8px; color: #f8fafc;">Dire Bonjour à MOISE BOKELO ?</h3>
+          <p class="text-muted" style="font-size: 13.5px; margin-bottom: 20px;">Envoyez-moi un message direct via WhatsApp.</p>
+
+          <form onsubmit="sendWhatsApp(); return false;">
+            <div class="row">
+              <div class="col-sm-6" style="margin-bottom: 12px;">
+                <input type="text" id="nom" class="form-control" placeholder="Votre Nom Complet" required>
+              </div>
+              <div class="col-sm-6" style="margin-bottom: 12px;">
+                <input type="text" id="userNumber" class="form-control" placeholder="Votre Numéro WhatsApp" required>
+              </div>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <textarea id="message" class="form-control" rows="4" placeholder="Votre message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-block" style="padding: 10px;">
+              <i class="fab fa-whatsapp" style="margin-right: 6px;"></i>Envoyer via WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-xs-6">
+            <img src="img/2.jpg" class="img-responsive" style="border-radius: 10px; border: 1px solid #1e293b; box-shadow: 0 8px 20px rgba(0,0,0,0.35);" alt="Photo 1">
+          </div>
+          <div class="col-xs-6">
+            <img src="img/J.jpg" class="img-responsive" style="border-radius: 10px; border: 1px solid #1e293b; box-shadow: 0 8px 20px rgba(0,0,0,0.35);" alt="Photo 2">
           </div>
         </div>
       </div>
 
     </div>
   </div>
-</div>
-</div>
-
-
-<div class="container" id="contact" style="margin-top:50px;">
-  <div class="row">
-
-    <!-- Formulaire à gauche -->
-    <div class="col-md-6">
-      <div class="text-left" >
-        <h5">Dire Bonjour a MOISE BOKELO?</h5>
-      </div>
-
-   <form onsubmit="sendWhatsApp(); return false;">
-  <div class="row">
-    <div class="col-xs-6">
-      <input type="text" id="nom" class="form-control" placeholder="Votre Nom Complet">
-    </div>
-    <div class="col-xs-6">
-      <input type="text" id="userNumber" class="form-control" placeholder="Votre Numéro WhatsApp ">
-    </div>
-  </div>
-  <br>
-  <textarea id="message" class="form-control" rows="4" placeholder="Message"></textarea>
-  <br>
-  <button type="submit" class="btn btn-success btn-block">Envoyer via WhatsApp</button>
-</form>
-
-<script>
-function sendWhatsApp() {
-  // Récupérer les valeurs du formulaire
-  var nom = document.getElementById("nom").value;
-  var userNumber = document.getElementById("userNumber").value;
-  var message = document.getElementById("message").value;
-
-  // Construire le texte du message
-  var text = "Nom: " + nom + "%0ANuméro: " + userNumber + "%0AMessage: " + message;
-
-  // Ton numéro WhatsApp (destination)
-  var myNumber = "243813537492";
-
-  // Lien WhatsApp universel (ouvre l'application si installée)
-  var whatsapp_link = "https://wa.me/" + myNumber + "?text=" + text;
-
-  // Redirection vers WhatsApp
-  window.location.href = whatsapp_link;
-}
-</script>
-
-
-
-    </div>
-
-    <!-- Photos à droite -->
-    <div class="col-md-6 text-right">
-      <div class="row">
-        <div class="col-sm-6">
-          <img src="img/2.jpg" class="img-responsive">
-        </div>
-        <div class="col-sm-6">
-          <img src="img/J.jpg" class="img-responsive">
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
 
   <!-- Footer -->
-  <footer class="bg-black text-light" style="padding:30px 0; margin-top:50px;">
-    <div class="container footer-content">
+  <footer class="custom-footer">
+    <div class="container">
       <div class="row">
 
         <!-- Colonne gauche -->
-        <div class="col-md-4 text-left">
-          <div class="social-icons">
-            <span>
-              <i class="fab fa-facebook-f text-primary"></i> 
-              <strong>Facebook : Moïse Bokelo</strong>
-            </span>
-            <span>
-              <i class="fab fa-whatsapp text-success"></i> 
-              <strong>WhatsApp : +243813537497</strong>
-            </span>
+        <div class="col-md-4 col-sm-12 footer-col footer-left">
+          <div class="footer-links">
+            <p><i class="fab fa-facebook-f" style="color: #60a5fa;"></i> <strong>Facebook :</strong> Moïse Bokelo</p>
+            <p><a href="https://wa.me/243813537497" target="_blank"><i class="fab fa-whatsapp" style="color: #25D366;"></i> <strong>WhatsApp :</strong> +243813537497</a></p>
           </div>
         </div>
 
         <!-- Colonne milieu -->
-        <div class="col-md-4 text-center">
-          <div class="social-icons">
-            <span>
-              <i class="fa fa-phone text-info"></i> 
-              <strong>+243813537497 / +243848553279</strong>
-            </span>
-            <span>
-              <i class="fa fa-envelope text-warning"></i> 
-              <strong>moisebokelo@gmail.com</strong>
-            </span>
+        <div class="col-md-4 col-sm-12 footer-col footer-center">
+          <div class="footer-links">
+            <p><a href="tel:+243813537497"><i class="fa fa-phone" style="color: #38bdf8;"></i> <strong>+243813537497 / +243848553279</strong></a></p>
+            <p><a href="mailto:moisebokelo@gmail.com"><i class="fa fa-envelope" style="color: #fbbf24;"></i> <strong>moisebokelo@gmail.com</strong></a></p>
           </div>
         </div>
 
         <!-- Colonne droite -->
-        <div class="col-md-4 text-right">
-          <div class="social-icons">
-            <span>
-              <i class="fab fa-youtube text-danger"></i> 
-              <strong>YouTube : Moïse Bokelo</strong>
-            </span>
+        <div class="col-md-4 col-sm-12 footer-col footer-right">
+          <div class="footer-links">
+            <p><i class="fab fa-youtube" style="color: #f87171;"></i> <strong>YouTube :</strong> Moïse Bokelo</p>
           </div>
         </div>
 
       </div>
 
-      <!-- Citation en bas -->
-      <p class="quote">
-        « Sans amour du prochain, l’innovation technologique demeure incomplète ; 
+      <p class="footer-quote">
+        « Sans amour du prochain, l’innovation technologique demeure incomplète ;
         car la finalité de toute invention est de servir la société. »
       </p>
+
     </div>
   </footer>
 
+  <!-- Boutons flottants : Télécharger CV + WhatsApp -->
+  <div class="floating-actions">
+    <button type="button"
+            class="cv-float"
+            onclick="confirmDownloadCV()"
+            title="Télécharger le CV"
+            aria-label="Télécharger le CV">
+      <i class="fa fa-file-arrow-down" style="font-size: 22px; color: #ffffff;"></i>
+    </button>
 
-<a href="https://wa.me/243813537492" 
-   target="_blank" 
-   style="position:fixed; bottom:90px; right:20px; z-index:1000; background-color:#072019; color:white; border-radius:50%; width:60px; height:60px; display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); text-decoration:none;">
-    <i class="fab fa-whatsapp" style="font-size:28px; color:#25D366;"></i>
-</a>
+    <a href="https://wa.me/243813537492"
+       target="_blank"
+       class="whatsapp-float"
+       aria-label="Contacter sur WhatsApp">
+      <i class="fab fa-whatsapp" style="font-size: 27px; color: #25D366;"></i>
+    </a>
+  </div>
 
+  <script>
+    function confirmDownloadCV() {
+      var confirmDownload = confirm("Voulez-vous télécharger le CV ?");
+      if (confirmDownload) {
+        var link = document.createElement("a");
+        link.href = "img/cv_moise.docx";
+        link.download = "cv_moise.docx";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
 
+    function sendWhatsApp() {
+      var nom = document.getElementById("nom").value.trim();
+      var userNumber = document.getElementById("userNumber").value.trim();
+      var message = document.getElementById("message").value.trim();
+
+      if (!nom || !userNumber || !message) {
+        return;
+      }
+
+      var text = "Nom: " + nom + "%0ANuméro: " + userNumber + "%0AMessage: " + message;
+      var myNumber = "243813537492";
+      var whatsapp_link = "https://wa.me/" + myNumber + "?text=" + text;
+
+      window.location.href = whatsapp_link;
+    }
+
+    // Fermer automatiquement le menu mobile après un clic sur un lien
+    $(document).on("click", "#main-navbar a", function () {
+      if ($(".navbar-toggle").is(":visible")) {
+        $("#main-navbar").collapse("hide");
+      }
+    });
+  </script>
+
+</body>
 </html>
